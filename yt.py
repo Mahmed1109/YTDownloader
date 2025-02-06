@@ -27,9 +27,11 @@ while True:
             print("Views:", info_dict.get('view_count', 'Unknown'))
             #Use if statement for duration to get a more accurate number
             duration_seconds = info_dict.get('duration', 'Unknown')
-            if duration_seconds != 'Unknown': #If no error/time is known then do below
-                minutes, seconds = divmod(duration_seconds, 60)  # Convert seconds to minutes and seconds
-                print(f"Duration: {minutes}:{seconds:02}")  # Format as MM:SS
+
+            if duration_seconds != 'Unknown':  # If no error/time is known then do below
+                hours, remainder = divmod(duration_seconds, 3600)  # Convert seconds to hours and remainder
+                minutes, seconds = divmod(remainder, 60)  # Convert remainder to minutes and seconds
+                print(f"Duration: {hours}:{minutes:02}:{seconds:02}")  # Format as HH:MM:SS
             else:
                 print("Duration: Unknown")
 
